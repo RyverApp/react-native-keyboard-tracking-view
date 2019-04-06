@@ -1,7 +1,18 @@
 {
   "name": "react-native-keyboard-tracking-view",
   "publishConfig": {
+    "access": "restricted",
     "registry": "https://registry.npmjs.org/"
+  },
+  "scripts": {
+    "link-package": "yarn link",
+    "test": "echo \"Warning: no test specified\" && exit 0",    
+    "ship-it": "npm publish",
+    "release": "yarn version --patch && yarn ship-it",
+    "release:minor": "yarn version --minor && yarn ship-it",
+    "release:major": "yarn version --major && yarn ship-it",
+    "preversion": "yarn test",
+    "postversion": "git push && git push --tags"
   },
   "repository": {
     "type": "git",
