@@ -1,5 +1,5 @@
 {
-  "name": "react-native-keyboard-tracking-view",
+  "name": "@ryverapp/react-native-keyboard-tracking-view",
   "publishConfig": {
     "access": "restricted",
     "registry": "https://registry.npmjs.org/"
