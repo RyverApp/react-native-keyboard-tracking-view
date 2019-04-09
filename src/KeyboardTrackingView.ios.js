@@ -2,8 +2,8 @@
  * Created by artald on 15/05/2016.
  */
 
-import React, {PureComponent} from 'react';
-import ReactNative, {requireNativeComponent, NativeModules} from 'react-native';
+import React, { PureComponent } from 'react';
+import ReactNative, { requireNativeComponent, NativeModules } from 'react-native';
 
 const NativeKeyboardTrackingView = requireNativeComponent('KeyboardTrackingView', null);
 const KeyboardTrackingViewManager = NativeModules.KeyboardTrackingViewManager;
@@ -12,6 +12,7 @@ export default class KeyboardTrackingView extends PureComponent {
   constructor(props) {
     super(props);
   }
+  
   render() {
     return (
       <NativeKeyboardTrackingView {...this.props} ref={r => this.ref = r}/>

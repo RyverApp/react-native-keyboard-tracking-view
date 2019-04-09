@@ -26,6 +26,7 @@
   },
   "homepage": "https://github.com/wix/react-native-keyboard-tracking-view",
   "main": "index.js",
+  "typings": "index.d.ts",
   "author": "Artal Druk <artald@wix.com>",
   "license": "MIT",
   "peerDependencies": {
