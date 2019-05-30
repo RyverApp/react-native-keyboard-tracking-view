@@ -393,8 +393,9 @@ typedef NS_ENUM(NSUInteger, KeyboardTrackingScrollBehavior) {
         
         CGFloat originalBottomInset = self.scrollIsInverted ? insets.top : insets.bottom;
         CGPoint originalOffset = self.scrollViewToManage.contentOffset;
+        CGFloat keyboardHeight = roundf(_observingInputAccessoryView.keyboardHeight);
         
-        bottomInset += (_observingInputAccessoryView.keyboardHeight == 0 ? bottomSafeArea : 0);
+        bottomInset += (keyboardHeight == 0 ? bottomSafeArea : 0);
         if(self.scrollIsInverted)
         {
             insets.top = bottomInset;
@@ -407,9 +408,9 @@ typedef NS_ENUM(NSUInteger, KeyboardTrackingScrollBehavior) {
         
         if(self.scrollBehavior == KeyboardTrackingScrollBehaviorScrollToBottomInvertedOnly && _scrollIsInverted)
         {
-            BOOL fisrtTime = _observingInputAccessoryView.keyboardHeight == 0 && _observingInputAccessoryView.keyboardState == KeyboardStateHidden;
-            BOOL willOpen = _observingInputAccessoryView.keyboardHeight != 0 && _observingInputAccessoryView.keyboardState == KeyboardStateHidden;
-            BOOL isOpen = _observingInputAccessoryView.keyboardHeight != 0 && _observingInputAccessoryView.keyboardState == KeyboardStateShown;
+            BOOL fisrtTime = keyboardHeight == 0 && _observingInputAccessoryView.keyboardState == KeyboardStateHidden;
+            BOOL willOpen = keyboardHeight != 0 && _observingInputAccessoryView.keyboardState == KeyboardStateHidden;
+            BOOL isOpen = keyboardHeight != 0 && _observingInputAccessoryView.keyboardState == KeyboardStateShown;
             if(fisrtTime || willOpen || (isOpen && !self.isDraggingScrollView))
             {
                 [self.scrollViewToManage setContentOffset:CGPointMake(self.scrollViewToManage.contentOffset.x, -self.scrollViewToManage.contentInset.top) animated:!fisrtTime];
@@ -508,7 +509,7 @@ typedef NS_ENUM(NSUInteger, KeyboardTrackingScrollBehavior) {
     CGFloat bottomSafeArea = [self getBottomSafeArea];
     CGFloat accessoryTranslation = MIN(-bottomSafeArea, -_observingInputAccessoryView.keyboardHeight);
     
-    if (_observingInputAccessoryView.keyboardHeight <= bottomSafeArea) {
+    if (roundf(_observingInputAccessoryView.keyboardHeight) <= bottomSafeArea) {
         _bottomViewHeight = kBottomViewHeight;
     } else if (_observingInputAccessoryView.keyboardState != KeyboardStateWillHide) {
         _bottomViewHeight = 0;
@@ -544,7 +545,7 @@ typedef NS_ENUM(NSUInteger, KeyboardTrackingScrollBehavior) {
 
 - (void) observingInputAccessoryViewKeyboardWillAppear:(ObservingInputAccessoryView *)observingInputAccessoryView keyboardDelta:(CGFloat)delta
 {
-    if (observingInputAccessoryView.keyboardHeight > 0) //prevent hiding the bottom view if an external keyboard is in use
+    if (roundf(observingInputAccessoryView.keyboardHeight) > 0) //prevent hiding the bottom view if an external keyboard is in use
     {
         _bottomViewHeight = 0;
         [self updateBottomViewFrame];
