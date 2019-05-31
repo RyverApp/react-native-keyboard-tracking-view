@@ -6,7 +6,7 @@
   },
   "scripts": {
     "link-package": "yarn link",
-    "test": "echo \"Warning: no test specified\" && exit 0",    
+    "test": "echo \"Warning: no test specified\" && exit 0",
     "ship-it": "npm publish",
     "release": "yarn version --patch && yarn ship-it",
     "release:minor": "yarn version --minor && yarn ship-it",
@@ -18,7 +18,7 @@
     "type": "git",
     "url": "https://github.com/wix/react-native-keyboard-tracking-view.git"
   },
-  "version": "5.5.0",
+  "version": "5.5.1",
   "description": "React Native UI component which tracks the keyboard",
   "nativePackage": true,
   "bugs": {
@@ -30,7 +30,7 @@
   "author": "Artal Druk <artald@wix.com>",
   "license": "MIT",
   "peerDependencies": {
-    "react-native": ">=0.51.0",
-    "react": ">=16.0.0"
+    "react": ">=16.0.0",
+    "react-native": ">=0.51.0"
   }
 }
